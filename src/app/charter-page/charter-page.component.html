@@ -1,0 +1,202 @@
+    <link rel="stylesheet" href="https://pro.fontawesome.com/releases/v5.10.0/css/all.css"
+        integrity="sha384-AYmEC3Yw5cVb3ZcuHtOA93w35dYTsvhLPVnYs9eStHfGJvOvKxVfELGroGkvsg+p" crossorigin="anonymous" />
+    <!-- <link rel="stylesheet" href="../../assets/bootstrap.min.css"> -->
+
+    <!-- <app-header></app-header> -->
+    <section class="white-space">
+
+        <div class="container-fluid">
+            <div class="container-fluid">
+            <div class="row">
+                <div class="col-md-12">
+                    <div class="task-progress-bar">
+                        <div *ngIf="signed">
+                            <svg-icon
+                                      [applyClass]="true"
+                                      [src]="'../assets/images/checkmark-icon-green.svg'"
+                                      class="charter-check"
+                                    ></svg-icon>
+                        </div>
+                        <div class="d-flex top">
+                            
+                        
+                            <p class="title">{{charter?charter.title:''}} <span>Expires {{charter?charter.expiry_date:''}}</span></p>
+                        
+                        <div class="text-right" *ngIf="signed" >
+                            <div class="last-completed">
+                                LAST COMPLETED
+                        </div>
+                            <div  class="charter-signed">Charter signed on {{user && user.charter?user.charter.updated_at:charter_date}}</div>
+                        </div>
+                        </div>
+                        <div class="d-flex bottom">
+                                <div class="col-md-8">
+                                    <p class="heading">NEXT TASK</p>
+                                    <p class="subheading" *ngIf="!signed">Read and sign the charter to enter the Verify platform.</p>
+                                    <p class="subheading" *ngIf="signed">Your charter is complete, nothing more to action.</p>
+
+                                </div>
+                                <div class="col-md-4 text-right" *ngIf="!signed">
+                                    <span class="minutes">
+                                        <svg-icon
+                                            [applyClass]="true"
+                                            [src]="'../assets/images/time-icon.svg'"
+                                            class="time-icon"
+                                            ></svg-icon>
+                                        30 mins</span>
+                                    <button class="btn-border-dark" (click)="scroll(target)">Sign Charter</button>
+                                </div>
+
+                        </div>
+                    </div>
+                    <div class="row mt-4">
+                        <!-- main container -->
+                        <div class="col-md-8">
+                            <!-- brand notification -->
+                            <div class="brand-notify" *ngIf="!signed">
+                                <p class="text"><svg-icon
+                                    [applyClass]="true"
+                                    [src]="'../assets/images/info-glyph-green.svg'"
+                                    class="info-icon"
+                                    ></svg-icon>
+                                    &nbsp;<span>Charter
+                                        must be read and signed.</span>&nbsp; You must accept the charter before you
+                                    can continue to your dashboard.</p>
+                            </div>
+                            <!-- video -->
+                            <h3 class="title mb-4">Huntsworth Policy Charter</h3>
+                                 <div class="row box-content" style="margin-left: 0px;margin-right: 0px;">
+                                     <!-- <div class="col-md-3" style="align-self: center;"> 
+                                        <img src="../../assets/images/person.png" width="100%"/>
+                                     </div> -->
+                                     <div class="col-md-12">
+                                        <div class="heading"> Understanding your critical role in helping us succeed as a responsible and ethical business</div>
+                                        <div><b>A message from the CEO</b></div>
+                                        <br/>
+                                        <div class="size-13">
+                                            Welcome to NewCo – it’s great to have you become a member of our global community. While every business talks about the need to behave responsibly and ethically, at NewCo you’re joining a group of XXX individuals who recognise the importance to us as a business to uphold the highest standards in how we make decisions and deliver our products and services to clients worldwide. Through our influential and long-standing relationships with the most forward-thinking businesses as clients, making the right choices – and in the right way – has a direct and positive impact on all those in society. 
+                                        </div>
+                                        <br/>
+                                        <div class="size-13"> 
+For us to succeed as a business, we need you to succeed as a critical part of this business. We need to make sure you and all the team have the skills and knowledge to act responsibly, effectively and in the best interests of our stakeholders. As a [new] member of the NewCo community, this charter starts your journey to both understand and be responsible for the role you play and the contribution you make in ensuring we’re meeting the highest standards as a business. 
+ </div>
+<br/>
+<div class="size-13">
+Below we’ve laid out a summary of how our XXX learning platform works. I ask you to read through this to be clear on how we’re going to support you, and in turn how you’re going to support NewCo. We’ve worked hard to make this process as seamless and engaging as possible, and we look forward to having you grow in your new role and contribute to the long-term success and impact of NewCo.
+ 
+
+
+                                        </div>
+
+
+                                     </div>
+                                   
+                                </div>
+                                <div [innerHtml]="html" #target class="size-13">
+                                <!--<h3 class="title mb-4 mt-4">Huntsworth Policy Charter</h3>
+                                <div class="box-content">
+                                    <div class="heading">Why ethics and compliance are important</div>
+                                    <div class="content mt-2">
+                                        <ul class="square-box-list-style">
+                                            <li>Lorem ipsum dolor sit amet, consectetuer adipiscing elit. Donec
+                                                odio. Quisque volutpat mattis eros. Nullam malesuada erat ut turpis.
+                                                Suspendisse urna nibh.</li>
+                                            <li>Praesent dapibus, neque id cursus faucibus, tortor neque egestas
+                                                auguae, eu vulputate magna eros eu erat. Aliquam erat volutpat. Nam
+                                                dui mi, tincidunt quis, accumsan porttitor, facilisis luctus, metus.
+                                                Morbi in sem quis dui placerat ornare. Pellentesque odio nisi,
+                                                euismod in, pharetra a, ultricies in, diam. Sed arcu.</li>
+                                            <li>Praesent dapibus, neque id cursus faucibus, tortor neque egestas
+                                                auguae, eu vulputate magna eros eu erat. Aliquam erat volutpat. Nam
+                                                dui mi, tincidunt quis, accumsan porttitor, facilisis luctus, metus.
+                                                Morbi in sem quis dui placerat ornare. Pellentesque odio nisi,
+                                                euismod in, pharetra a, ultricies in, diam. Sed arcu.</li>
+                                            <li>Lorem ipsum dolor sit amet, consectetuer adipiscing elit. Donec
+                                                odio. Quisque volutpat mattis eros. Nullam malesuada erat ut turpis.
+                                                Suspendisse urna nibh.</li>
+                                            <li>Praesent dapibus, neque id cursus faucibus, tortor neque egestas
+                                                auguae, eu vulputate magna eros eu erat. Aliquam erat volutpat. Nam
+                                                dui mi, tincidunt quis, accumsan porttitor, facilisis luctus, metus.
+                                                Morbi in sem quis dui placerat ornare. Pellentesque odio nisi,
+                                                euismod in.</li>
+                                        </ul>
+                                    </div>
+                                </div>
+                                <div class="box-content">
+                                    <div class="heading">Why ethics and compliance are important</div>
+                                    <div class="content mt-2">
+                                        <ol class="order-list-style">
+                                            <li>Lorem ipsum dolor sit amet, consectetuer adipiscing elit. Donec
+                                                odio. Quisque volutpat mattis eros. Nullam malesuada erat ut turpis.
+                                                Suspendisse urna nibh.</li>
+                                            <li>Praesent dapibus, neque id cursus faucibus, tortor neque egestas
+                                                auguae, eu vulputate magna eros eu erat. Aliquam erat volutpat. Nam
+                                                dui mi, tincidunt quis, accumsan porttitor, facilisis luctus, metus.
+                                                Morbi in sem quis dui placerat ornare. Pellentesque odio nisi,
+                                                euismod in, pharetra a, ultricies in, diam. Sed arcu.</li>
+                                            <li>Praesent dapibus, neque id cursus faucibus, tortor neque egestas
+                                                auguae, eu vulputate magna eros eu erat. Aliquam erat volutpat. Nam
+                                                dui mi, tincidunt quis, accumsan porttitor, facilisis luctus, metus.
+                                                Morbi in sem quis dui placerat ornare. Pellentesque odio nisi,
+                                                euismod in, pharetra a, ultricies in, diam. Sed arcu.</li>
+                                            <li>Lorem ipsum dolor sit amet, consectetuer adipiscing elit. Donec
+                                                odio. Quisque volutpat mattis eros. Nullam malesuada erat ut turpis.
+                                                Suspendisse urna nibh.</li>
+                                            <li>Praesent dapibus, neque id cursus faucibus, tortor neque egestas
+                                                auguae, eu vulputate magna eros eu erat. Aliquam erat volutpat. Nam
+                                                dui mi, tincidunt quis, accumsan porttitor, facilisis luctus, metus.
+                                                Morbi in sem quis dui placerat ornare. Pellentesque odio nisi,
+                                                euismod in.</li>
+                                        </ol>
+                                    </div>
+                                </div> -->
+                            </div>
+                            <div *ngIf="!signed">
+                                <div class="query-text mt-4 mb-4">
+                                    <p><svg-icon
+                                        [applyClass]="true"
+                                        [src]="'../assets/images/message-icon.svg'"
+                                        class="msg-icon"
+                                        ></svg-icon>
+                                        <span>I have a query before I sign the
+                                            charter.</span></p>
+                                </div>
+                                <h3 class="heading mb-4 mt-4">Accept and Sign</h3>
+                                <div class="toggle-state">
+                                    <p class="mb-0 text-white">Sign Policy Document/Charter</p>
+                                </div>
+                                <div class="sign-charter mb-3">
+                                    <input type="checkbox" [(ngModel)]="agree"/><span class="checkbox-text ml-2">I have reviewed and
+                                        accept the terms and conditions set out by this policy document.</span>
+                                </div>
+                                <span>
+                                <button class="btn-dark"  [disabled]="!agree" (click)='markComplete()'>Accept</button>
+                                <!-- <span class="brand-notify" style="margin-left: 1em;" *ngIf="!agree">
+                                    <i class="fas fa-exclamation-triangle" ></i>Please check that you accept the policy document/charter.
+                                </span> -->
+                                </span>
+                            </div>
+                        </div>
+                        <!-- right sidebar -->
+                        <div class="col-md-4 right-sidebar">
+                            <h3 class="title">History</h3>
+                            <div class="history">
+                                <div class="top d-flex">
+                                    <div class="left">Charter</div>
+                                    <div class="right text-right">Created on 15.09.21</div>
+                                </div>
+                                <div class="bottom-content">
+                                    <p class="text">Version 1 of Huntsworth Policy Charter uploaded on 15.09.21.
+                                    </p>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        </div>
+        <div>
+        </div>
+
+    </section>

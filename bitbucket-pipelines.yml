@@ -1,0 +1,15 @@
+image: node:16.13
+pipelines:
+ branches:
+  master:
+   - step:
+       name: Deploy to Staging
+       deployment: staging
+       script:
+        - npm install
+        - npm install -g @angular/cli@13.0.4
+        - npm install typescript@4.4.3
+        - npm uninstall @fortawesome/angular-fontawesome
+        - ng build
+        - echo "$(ls -la dist/)"
+        - scp -r dist/ verify@40.115.112.119:/home/verify/app

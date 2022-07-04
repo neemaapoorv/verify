@@ -1,0 +1,36 @@
+/* You can add global styles to this file, and also import other style files */
+/* @font-face {
+    font-family: Inter;
+    src: url(Inter-VariableFont_slnt,wght.ttf);
+} */
+@import './assets/css/general.css';
+@font-face {
+    /*font-family: "Inter" !important;*/
+    font-family: 'Inter, Regular';
+    src: url("./assets/fonts/Inter-UI-Regular.otf") format("truetype");
+    font-weight: bold;
+  }
+
+  @font-face {
+    /*font-family: "Inter" !important;*/
+    font-family: 'Inter, SemiBold';
+    src: url("./assets/fonts/Inter-UI-SemiBold.otf") format("truetype");
+    font-weight: bold;
+  }
+
+  @font-face {
+    /*font-family: "Inter" !important;*/
+    font-family: 'Inter, Bold';
+    src: url("./assets/fonts/Inter-UI-Bold.otf") format("truetype");
+    font-weight: bold;
+  }
+
+  @font-face {
+    /*font-family: "Inter" !important;*/
+    font-family: 'Inter, Medium';
+    src: url("./assets/fonts/Inter-UI-Medium.otf") format("truetype");
+    font-weight: bold;
+  }
+
+
+html, body { height: 100%; }

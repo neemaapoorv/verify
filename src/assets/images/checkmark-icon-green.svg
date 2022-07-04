@@ -1,0 +1,5 @@
+<svg id="checkmark--solid" xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 16 16">
+  <g id="checkmark--solid-2" data-name="checkmark--solid">
+    <path id="checkmark" d="M8,16a8,8,0,1,1,8-8,8,8,0,0,1-8,8ZM11.293,4.668,6.75,9.21,4.707,7.168,3.293,8.582,6.75,12.04l5.957-5.957L11.293,4.669Z" fill="#22ab4b" fill-rule="evenodd"/>
+  </g>
+</svg>

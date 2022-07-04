@@ -1,0 +1,35 @@
+<footer id="footer">
+    <div class="container-fluid">
+      <div class="row">
+        <div class="col-md-6">
+          <ul class="menu-list">
+            <li><a href="#">Privacy Policy</a></li>
+            <li><a href="#">Terms of use</a></li>
+          </ul>
+          <p class="copyright">
+            Product of Huntsworth <br>
+            Copyright © 2021 Verify
+          </p>
+          <div class="footer-logo">
+            <a href="#">
+              <svg-icon
+                [applyClass]="true"
+                [src]="'../assets/images/verify-logo.svg'"
+                class="logo-icon"
+              ></svg-icon>
+            </a>
+          </div>
+        </div>
+        <div class="col-md-3">
+          <ul class="menu-list">
+            <li><a href="#">Contact</a></li>
+          </ul>
+        </div>
+        <div class="col-md-3" [ngClass]="{'show-scrollTop': windowScrolled}">
+          <button type="button" class="btn btn-danger btn-floating btn-lg" id="btn-back-to-top" (click)="scrollToTop()">
+            <i class="fas fa-arrow-up"></i>
+          </button>
+        </div>
+      </div>
+    </div>
+  </footer>

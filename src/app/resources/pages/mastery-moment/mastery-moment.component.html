@@ -1,0 +1,229 @@
+<div class="modal-content">
+    <div class="modal-header">
+        <h5>{{topic.topic_courses.topics.topic_name}} Mastery
+            <svg-icon
+              [applyClass]="true"
+              [src]="'../assets/images/tooltip-icon.svg'"
+              class="tooltip-icon"
+            ></svg-icon>
+        </h5>
+        <span class="close" (click)="closeModal()">&times;</span>
+
+    </div>
+    <section id="gdpr-mastery">
+            <form>
+                <div class="step step-1" [ngClass]="{'active': showIntro==0}">
+                  <div class="">
+                      <h6 class="greeting">Congratulations,</h6>
+                      <h2 class="heading"> you’re about to learn something new!</h2>
+                      <p class="sub-head">This new topic will be part of your Mini Moment:</p>
+                  </div>
+                  <div class="card flex-row"><img class="card-img-sm-left example-card-img-responsive" src="https://codingyaar.com/wp-content/uploads/bootstrap-4-card-image-left-demo-image.jpg"/>
+                    <div class="card-body">
+                      <h4 class="card-title h5 h4-sm">The need to comply with {{topic.topic_courses.topics.topic_name}}</h4>
+                      <p class="box-desc">Module: Why {{topic.topic_courses.topics.topic_name}} is important</p>
+                    </div>
+                  </div>
+                  <div class="d-flex pt-4">
+                    <div class="msg-icon-mastery">  
+                        <div class="msg-icon-block">
+                            <svg-icon
+                                        [applyClass]="true"
+                                        [src]="'../assets/images/message-icon.svg'"
+                                        class="msg-icon"
+                                        ></svg-icon>
+                        </div>
+                     </div>
+                    <div class="msg-text pl-3">
+                       <p class="sub-head">Don’t worry if you don’t know the answer, just make your best guess. There is no penalty to not knowing! Each activity is an opportunity to learn, and there will be more in the future.</p>
+                    </div>
+                  </div>
+              <button type="button" class="next-btn" (click)="showQuestions()">Continue</button>
+            </div>
+            <div class="step step-2" [ngClass]="{'active': showIntro==1}">
+                <div class="mastery-question" style="display:none" *ngFor="let activity of masteryMoment.activities,let i = index" [ngClass]="'question'+i">
+                
+                <h6 class="sub-head">Question {{i+1}} of {{masteryMoment.activities.length}}</h6>
+                 <div class="question" [innerHtml]="activity.question"></div>
+                    <div role="radiogroup" *ngFor="let answer of getSortedAnswers(activity.answers)" style="display:flex;align-items: center;">
+                        <!-- <p [ngStyle]="{'background-color': (activity.correctAnswer==signKey(answer.id+answer.answer,activity.key)) ? 'green' : '#ffffffff'}"><input type="radio"/></p><span [innerHtml]="answer.answer" style="margin-left: 1em;"></span> -->
+                        <label class="true-question">
+                            <input class="check-true"  type="radio" name="masteryAnswer"  (change)="onItemChange(answer.id+answer.answer,activity.key,answer)" />
+                        <div class="radio-label" style="display: flex;align-items: center;">
+                            <svg-icon
+                                [applyClass]="true"
+                                [src]="'../assets/images/checkmark-outline.svg'"
+                                class="mastery-answer-icon"
+                            ></svg-icon>
+                        <div [innerHtml]="answer.answer" >
+                            </div>
+                        </div>
+                        </label>
+                    
+                    </div>
+                <!-- <label class="true-question">
+                    <input class="check-true" type="checkbox" name="true"/> 
+                <div class="radio-label">True</div>
+                </label>
+                <label class="true-question">
+                    <input class="check-true" type="checkbox" name="false"/> 
+                    <div class="radio-label">False</div>
+
+                </label> -->
+              <div class="confidence" *ngIf="showConfidence">
+                <span>Do you feel confident with your answer?</span>
+                <div class="d-flex mt-3">
+                    <button type="button" class="confidence-btn mr-2" (click)="submitAnswer(activity,100)">Yes </button>
+                    <button type="button" class="confidence-btn ml-2" (click)="submitAnswer(activity,0)">No </button>
+                </div>
+              </div>
+            </div>
+
+            <div class="mastery-answer" style="display:none" >
+                <h6 class="sub-head">Question {{currentIndex+1}} of {{masteryMoment.activities.length}}</h6>
+                <div class="question" [innerHtml]="currentActivity.question"></div>
+                
+                <div class="tab">
+                    <button class="tablinks" >Result</button>
+                    <button class="tablinks" >All Answer</button>
+                    <button class="tablinks">Performance</button>
+                </div>
+                <div id="Result" class="tabcontent" style="display: block;">
+                    <div class="correct-content">
+                        
+                        <h6><svg-icon
+                            [applyClass]="true"
+                            [src]="isCorrectImg"
+                            class="mastery-correct-icon"
+                        ></svg-icon>
+                             &nbsp; {{isCorrectString}}</h6>
+                        <p>True</p>
+                    </div>
+                  <div class="correct-para">
+                      <p [innerHtml]="currentActivity.answers[0].feedback"></p>
+                  </div>
+                 
+                </div>
+                <button type="button" class="next-btn" (click)="showNextQuestion()">Continue </button>
+            </div>
+
+
+
+            </div>
+            <div class="step step-3">
+                <h6 class="sub-head">Question 1 of 4</h6>
+                <p class="question">The smooth taste and bubbly feeling of sparkling wine have made it a popular drink for celebratory purposes.</p>
+          
+                <div class="tab">
+                    <button class="tablinks" onclick="openCity(event, 'Result')">Result</button>
+                    <!-- <button class="tablinks" onclick="openCity(event, 'AllAnswer')">All Answer</button>
+                    <button class="tablinks" onclick="openCity(event, 'Performance')">Performance</button> -->
+                  </div>
+                  
+                <div id="Result" class="tabcontent" style="display: block;">
+                    <div class="correct-content">
+
+                            <h6><i class="fa fa-check-circle" aria-hidden="true"></i> &nbsp; Correct</h6>
+                            <p>True</p>
+                    </div>
+                      <div class="correct-para">
+                          <p>Any person or organisation that deals with data from EU businesses, residents or citizens must now comply with GDPR. GDPR has replaced data protection legislation to provide better protection of data in a digital world, and to give more rights to data subjects.</p>
+                      </div>
+                    </div>
+                <div id="AllAnswer" class="tabcontent">
+                    <div class="correct-content">
+
+                        <h6><i class="fa fa-check-circle" aria-hidden="true"></i> &nbsp; Correct</h6>
+                        <p>True</p>
+                     
+                    </div>
+                    <div class="all-answer">
+                        <label class="true-question">
+                            <input class="check-true" type="checkbox" name="false"/> 
+                            <div class="radio-label">False</div>
+
+                        </label>
+                    </div>
+                  </div>
+                  
+                  <div id="Performance" class="tabcontent">
+                     <h6>Your Proficiency</h6>
+                     <h6><i class="fa fa-check-circle" aria-hidden="true"></i> &nbsp; Correct</h6>
+                     <p>You answered correctly.</p>
+                      
+                     <h6><i class="fa fa-check-circle" aria-hidden="true"></i> &nbsp; Slower</h6>
+                     <p>We use response speed as an indication for your level of mastery. Your response speed was a bit faster than the average for this activity.</p>
+
+                     <h6><i class="fa fa-check-circle" aria-hidden="true"></i> &nbsp; Correct</h6>
+                     <p>You were correct with high confidence.</p>
+                  </div>
+                <button type="button" class="next-btn">Continue </button>
+            </div>
+            <div class="step step-4" [ngClass]="{'active': showIntro==2}">
+                <div class="card-title">
+                    Summary
+                </div>
+                  <div class="summary-popup">
+                      <div class="summary-content">
+                          <p>Congratulations on completing this {{topic.topic_courses.topics.topic_name}} Mastery moment, here’s how it went:</p>         
+                      </div>
+                      <div class="summary-duration">
+                          <div class="complete-activites">
+                                <h2>{{total_correct}}</h2>  
+                                <h3>Correct Answers</h3>                                                                                                     
+                          </div>
+                          <div class="knowledge-summary">
+                                <h6><svg-icon
+                                    [applyClass]="true"
+                                    [src]="'../assets/images/time-icon.svg'"
+                                    class="mastery-correct-icon"
+                                ></svg-icon>
+                                Duration</h6>
+                                <p>{{total_time}}</p>
+                                <div class="knowledge-increase">
+                                  <h6>  <svg-icon
+                                    [applyClass]="true"
+                                    [src]="'../assets/images/trend-arrow-green.svg'"
+                                    class="mastery-correct-icon"
+                                ></svg-icon><span>Knowledge Increase</span></h6>
+                                  <p>{{increase_percent}}%</p>
+                                </div>
+                          </div>
+                      </div>
+                  </div>
+                  <!-- <div class="complete-now">
+                      <p>Practice is always great, but you are required to complete some Mastery Moments today. Complete one now?</p>
+                      <div class="complete-btn">
+                          <div class="btn btn-complete">Complete Now</div>
+                          <div class="btn btn-not">Not Now</div>
+
+                      </div>
+                  </div> -->
+                <!-- <button type="button" class="next-btn">Continue 3</button> -->
+              </div>
+              <div class="step step-5">
+                <button type="button" class="next-btn">Continue 4</button>
+            </div>
+              <div class="step step-6">
+                <button type="button" class="next-btn">Continue 5</button>
+              </div>
+              <div class="step step-7">
+                <button type="submit" class="submit-btn">Submit</button>
+              </div>
+          </form>
+      </section>
+</div>
+<!-- 
+<section>
+<div *ngFor="let activity of masteryMoment.activities">
+
+    <div  role="radiogroup" [innerHtml]="activity.question"></div>
+
+    <div *ngFor="let answer of getSortedAnswers(activity.answers)" style="display:flex;align-items: center;">
+        <p [ngStyle]="{'background-color': (activity.correctAnswer==signKey(answer.id+answer.answer,activity.key)) ? 'green' : '#ffffffff'}"><input type="radio"/></p><span [innerHtml]="answer.answer" style="margin-left: 1em;"></span>
+    </div>
+    <h3 style="margin-top:1em;">Feedback:</h3>
+    <div [innerHtml]="activity.answers[0].feedback" style="margin-bottom: 2em;"></div>
+    <hr/>
+</div>
+</section> -->

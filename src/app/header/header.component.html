@@ -1,0 +1,199 @@
+<section class="nav-fixed">
+    <nav class="navbar navbar-expand-lg navbar-light">
+      <div class="container-fluid">
+        <a class="navbar-brand pt-2" href="#">
+          <svg-icon
+            [applyClass]="true"
+            [src]="'../assets/images/verify-logo.svg'"
+            class="logo-icon"
+          ></svg-icon>
+        </a>
+        <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent"
+          aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+          <span class="navbar-toggler-icon"></span>
+        </button>
+        <div class="collapse navbar-collapse" id="navbarSupportedContent">
+          <ul class="navbar-nav ml-auto">
+            <li class="nav-item">
+              <a class="nav-link" (click)=testFunc()>Help</a>
+            </li>
+            <li class="nav-item">
+              <a class="nav-link" href="#">
+                <svg-icon
+                [applyClass]="true"
+                [src]="'../assets/images/notification-icon.svg'"
+                class="nav-icon"
+              ></svg-icon></a>
+            </li>
+            <li class="nav-item dropdown">
+              <div class="dropdown justify-content-center ">
+                <span class="profile-list dropdown-toggle" type="button" id="dropdownMenuButton" data-toggle="dropdown"
+                  aria-haspopup="true" aria-expanded="false">
+                  {{employee.fullName}}
+              </span>
+                <div class="dropdown-menu" aria-labelledby="dropdownMenuButton">
+                  <a class="dropdown-item" >Switch to Admin</a>
+                  <a class="dropdown-item" >Logout</a>
+                </div>
+              </div>
+            </li>
+          </ul>
+        </div>
+    </div>
+
+    </nav>
+    <div class="header-main container-fluid pt-3">
+      <div class="row">
+        <div class="emp-name col-md-4">
+          <h3 class="greeting-title">{{salution}}, {{user.employee.first_name}}</h3>
+          <ul class="d-flex breadcramp">
+            <li class="mr-2">{{user.employee.employee_status}}</li>
+            <li class="circle mr-2"></li>
+            <li class="mr-2">{{user.employee.business_unit_name}}</li>
+            <li class="circle mr-2"></li>
+            <li class="mr-2">{{user.compliant_status}}
+              <svg-icon
+              [applyClass]="true"
+              [src]="'../assets/images/tooltip-icon.svg'"
+              class="tooltip-icon"
+            ></svg-icon>
+            </li>
+          </ul>
+        </div>
+        <div class="col-md-4 your-pro">
+          <div class="d-flex your-progress">
+            <div class="flying">
+              <h5>Your Progress 
+                <svg-icon
+                [applyClass]="true"
+                [src]="'../assets/images/tooltip-icon.svg'"
+                class="tooltip-icon"
+              ></svg-icon></h5>
+              <h6>Flying high, keep it up 
+                <svg-icon
+                [applyClass]="true"
+                [src]="'../assets/images/trend-arrow-green.svg'"
+                class="tooltip-icon"
+              ></svg-icon>
+              </h6>
+            </div>
+            <div class="your-digit">{{user.compliance_percent}}<span class="percent">%</span></div>
+          </div>
+        </div>
+        <div class="col-md-4 next-pro">
+          <div class="next-task">
+            <h5>next task</h5>
+            <h6 *ngIf="nextTasks">{{nextTaskText}}</h6>
+            <div class="d-flex">
+              <button class="start-btn ml-3" (click)="openTopic()">Start
+                <svg-icon
+                [applyClass]="true"
+                [src]="'../assets/images/play-light.svg'"
+                class="tooltip-icon"
+              ></svg-icon>
+              </button>
+              <div class="minutes">
+                <svg-icon
+                [applyClass]="true"
+                [src]="'../assets/images/time-icon.svg'"
+                class="tooltip-icon"
+              ></svg-icon>
+                {{nextTaskTime}}</div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+    <div class="complance-dashboard">
+      <div class="">
+        <ul class="nav nav-tabs verify_tabs" role="tablist">
+          <li class="nav-item">
+            <a class="nav-link" [class.active]="router.isActive('/my/dashboard',true) || router.url.indexOf('/my/topics') > -1" [class.disabled]="!user.charter" data-toggle="tab" href="#home" [routerLink]="user.charter?'/my/dashboard':null">Dashboard</a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link" [class.active]="router.isActive('/my/charter',true)" data-toggle="tab" href="#menu1" [routerLink]="['/my/charter']">Charter</a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link" [class.active]="router.isActive('/my/my-team',true)" data-toggle="tab" href="#menu3" [routerLink]="['/my/my-team']">My Team</a>
+          </li>
+          <li class="nav-item" >
+            <a class="nav-link" [class.active]="router.isActive('/my/messageCenter',true)" [class.disabled]="!user.charter" data-toggle="tab" href="#menu2" [routerLink]="user.charter?'/my/messageCenter':null">Message Center</a>
+          </li>
+        </ul>
+      </div>
+    </div>
+  </section>
+  <div id="helpModal" class="modal">
+    <!-- Modal content -->
+    <div class="modal-content">
+      <div class="popup">
+        <img
+          height="66"
+          width="66"
+          class="img-fluid pb-3"
+          alt=""
+        />
+        <h4>{{user.employee.first_name}}, Welcome to Verify,<br/>your compliance tracking tool.</h4>
+        <div class="content">Ready to keep your compliance up to date?</div>
+        <button class="btn" id="verifyBtn">Start Quick Tour</button>
+        <div class="pt-3">
+          <a (click)="skipTour()" class="text-white skip">Skip the tour</a>
+        </div>
+      </div>
+    </div>
+  </div>
+  <div id="verifyModal" class="modal">
+    <div class="modal-content">
+      <div class="verifyModalClass container justify-content-center pt-5">
+        <div class="row pt-5 pb-2">
+          <div class="col-md-2"></div>
+          <div class="col-md-4">
+            <h3 class="verify-title">What is Verify?</h3>
+          </div>
+          <div class="col-md-2"></div>
+          <div class="col-md-4">
+            <div class="ml-5">
+              <i class="solid"></i>
+              <i class="stop"></i>
+              <i class="stop"></i>
+              <i class="stop"></i>
+              <i class="stop"></i>
+            </div>
+          </div>
+        </div>
+        <div class="row pt-3">
+          <div class="col-md-2"></div>
+          <div class="col-md-4">
+            <div class="card">
+              <div class="card-body">
+                <i class="fas fa-graduation-cap pb-5"></i>
+                <h5 class="card-title pt-3">Formal training</h5>
+                <p class="card-text pb-2">
+                  Some quick example text to build on the card title and make up
+                  the bulk of the card's content.
+                </p>
+              </div>
+            </div>
+          </div>
+          <div class="col-md-4">
+            <div class="card">
+              <div class="card-body">
+                <i class="fa fa-star pb-5" aria-hidden="true"></i>
+                <h5 class="card-title pt-3">Mastery Moments</h5>
+  
+                <p class="card-text pb-2">
+                  Some quick example text to build on the card title and make up
+                  the bulk of the card's content.
+                </p>
+              </div>
+            </div>
+            <button class="btn float-right mt-4 next-step" (click)=showIntro() id="tourbutton">
+              Next Step
+            </button>
+          </div>
+        </div>
+        <div class="col-md-2"></div>
+        <div class="pt-5"></div>
+      </div>
+    </div>
+  </div>

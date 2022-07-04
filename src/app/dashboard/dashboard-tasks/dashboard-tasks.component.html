@@ -1,0 +1,120 @@
+  <div class="taskmain container-fluid">
+  <div class="row task-container">
+      <div class="col-md-6 col-xs-6 col-sm-6 task-count no-background no-padding">
+        <div class="counter-left">
+          <h1 class="count"><i class="fa fa-exclamation-triangle" aria-hidden="true"></i>{{policy.length+lms.length}}</h1>
+          <h4 class="title">Tasks</h4>
+          <p class="content">until compliance</p>
+        </div>
+      </div>
+      <div class="col-md-6 col-xs-6 col-sm-6 task-count no-background no-padding">
+        <div class="counter-right">
+          <h1 class="count">{{mm.length+mm_lms.length}}<i class="fa fa-location-arrow" aria-hidden="true"></i></h1>
+          <h4 class="title">Mastery moments</h4>
+          <p class="content">remaining today</p>
+        </div>
+      </div>
+      </div>
+      <div class="tasks" style="width: 100%;">
+          <h3 class="heading">Tasks</h3>
+          <p class="subheading">Complete {{policy.length+lms.length}} tasks to become compliant.</p>
+
+
+          <div class="task-notify" *ngFor="let task of policy" >
+            <div class="d-flex">
+              <div class="notify-header-left">
+                <span class="sno">#1</span> {{task.topic_courses.topics.topic_name}}
+              </div>
+              <div class="notify-header-right">
+                30 mins <i class="far fa-clock"></i>
+              </div>
+            </div>
+            <h3 class="title">Sign the Policy Document for the {{task.topic_courses.topics.topic_name}} topic.</h3>
+          </div>
+          <div class="task-notify" *ngFor="let task of lms" >
+            <div class="d-flex">
+              <div class="notify-header-left">
+                <span class="sno">#1</span> {{task.topic_courses.topics.topic_name}}
+              </div>
+              <div class="notify-header-right">
+                {{task.topic_courses.courses.course_duration*60}} mins <i class="far fa-clock"></i>
+              </div>
+            </div>
+            <h3 class="title">Complete the Formal Training course for your {{task.topic_courses.topics.topic_name}} topic.</h3>
+          </div>
+          <!--<div class="task-notify" *ngFor="let task of mm" >
+            <div class="d-flex">
+              <div class="notify-header-left">
+                <span class="sno">#1</span> {{task.topic_courses.topics.topic_name}}
+              </div>
+              <div class="notify-header-right">
+                [34mins] <i class="far fa-clock"></i>
+              </div>
+            </div>
+            <h3 class="title">Complete the Mastery Moment for your {{task.topic_courses.topics.topic_name}} topic.</h3>
+          </div>
+          <div class="task-notify">
+            <div class="d-flex">
+              <div class="notify-header-left">
+                <span class="sno">#1</span> Data Security
+              </div>
+              <div class="notify-header-right">
+                34mins <i class="far fa-clock"></i>
+              </div>
+            </div>
+            <h3 class="title">Sign the Policy Document for the Data Security topic.</h3>
+          </div>
+          <div class="task-notify">
+            <div class="d-flex">
+              <div class="notify-header-left">
+                <span class="sno">#1</span> Data Security
+              </div>
+              <div class="notify-header-right">
+                34mins <i class="far fa-clock"></i>
+              </div>
+            </div>
+            <h3 class="title">Sign the Policy Document for the Data Security topic.</h3>
+          </div>
+          <div class="task-notify">
+            <div class="d-flex">
+              <div class="notify-header-left">
+                <span class="sno">#1</span> Data Security
+              </div>
+              <div class="notify-header-right">
+                34mins <i class="far fa-clock"></i>
+              </div>
+            </div>
+            <h3 class="title">Sign the Policy Document for the Data Security topic.</h3>
+          </div> -->
+      </div>
+      <div class="tasks" style="width: 100%;" *ngIf="(mm.length+mm_lms.length)>0">
+        <h3 class="heading">Mastery Moments</h3>
+        <p class="subheading">Complete {{mm.length+mm_lms.length}} mastery moments to become compliant.</p>
+
+
+        <div class="task-notify" *ngFor="let task of mm" >
+          <div class="d-flex">
+            <div class="notify-header-left">
+              <span class="sno">#1</span> {{task.topic_courses.topics.topic_name}}
+            </div>
+            <div class="notify-header-right">
+              30 mins <i class="far fa-clock"></i>
+            </div>
+          </div>
+          <h3 class="title">Complete the Mastery Moment for your {{task.topic_courses.topics.topic_name}} topic.</h3>
+        </div>
+        <div class="task-notify" *ngFor="let task of mm_lms" >
+          <div class="d-flex">
+            <div class="notify-header-left">
+              <span class="sno">#1</span> {{task.topic_courses.topics.topic_name}}
+            </div>
+            <div class="notify-header-right">
+              30 mins <i class="far fa-clock"></i>
+            </div>
+          </div>
+          <h3 class="title">Complete the Mastery Moment for your {{task.topic_courses.topics.topic_name}} topic.</h3>
+        </div>
+    </div>
+  </div>
+      
+

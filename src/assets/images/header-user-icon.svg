@@ -1,0 +1,8 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="12" height="16" viewBox="0 0 12 16">
+  <g id="header--user" transform="translate(-4 -2)">
+    <g id="User---1px">
+      <path id="Oval-5" d="M10,9A3,3,0,1,0,7,6,3,3,0,0,0,10,9Zm0,1a4,4,0,1,1,4-4A4,4,0,0,1,10,10Z" fill="#272c38"/>
+      <path id="Path-4" d="M5,18H4V15.52a4.5,4.5,0,0,1,4.5-4.5l3.022.014A4.5,4.5,0,0,1,16,15.534V18H15V15.534a3.5,3.5,0,0,0-3.483-3.5l-3-.015A3.5,3.5,0,0,0,5,15.52Z" fill="#272c38"/>
+    </g>
+  </g>
+</svg>

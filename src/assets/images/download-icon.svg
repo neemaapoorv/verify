@@ -1,0 +1,8 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="14" height="18" viewBox="0 0 14 18">
+  <g id="download" transform="translate(0 2)">
+    <g id="download-2" data-name="download">
+      <path id="arrow" d="M7.5,11l4.1-4.4.7.7L7,13,1.6,7.3l.7-.7L6.5,11V0h1Z" transform="translate(0 -2)" fill="#212121"/>
+      <path id="bottom" d="M13,15V13h1v2a.945.945,0,0,1-1,1H1a.945.945,0,0,1-1-1V13H1v2Z" fill="#212121"/>
+    </g>
+  </g>
+</svg>

@@ -1,0 +1,313 @@
+<link rel="stylesheet" href="https://pro.fontawesome.com/releases/v5.10.0/css/all.css"
+integrity="sha384-AYmEC3Yw5cVb3ZcuHtOA93w35dYTsvhLPVnYs9eStHfGJvOvKxVfELGroGkvsg+p" crossorigin="anonymous" />
+<!-- <link rel="stylesheet" href="../../assets/bootstrap.min.css"> -->
+
+<section class="complance-dashboard white-space-detail">
+
+    <div class="container-fluid">
+    <div id="charter" class="container-fluid">
+        <div class="breadcrumbs pt-2">
+            <p class="content">
+                <i class="fa fa-arrow-left" [routerLink]="['/my/dashboard']"></i> / {{topics.topic_courses.topics.topic_name}}
+            </p>
+        </div>
+        <!-- breadcrumbs -->
+        <!-- single task progres bar -->
+        <div class="task-progress-bar">
+            
+            <div class="row indicator-row "  *ngIf='stepname==0'>
+            <div class="col-md-4 less-padding">
+                <div class="gdpr-line"></div>
+            </div>
+            <div class="col-md-4 less-padding">
+                <div class="gdpr-line"></div>
+            </div>
+            <div class="col-md-4 less-padding">
+                <div class="gdpr-line"></div>
+            </div>
+            </div>
+            <div class="d-flex indicator-row-policy" *ngIf='stepname==1'>
+                <div class="less-padding">
+                    <div  *ngIf="signed">
+                        <svg-icon
+                                  [applyClass]="true"
+                                  [src]="'../../../assets/images/checkmark-icon-green.svg'"
+                                  class="policy-check"
+                                ></svg-icon>
+                    </div>
+                </div>
+                <div class="indicator-row-policy-line row" >
+                <div class="col-md-6 less-padding">
+                    <div class="gdpr-line"></div>
+                </div>
+                <div class="col-md-6 less-padding">
+                    <div class="gdpr-line"></div>
+                </div>
+            </div>
+            </div>
+            <div class="d-flex indicator-row-policy" *ngIf='stepname==2'>
+                <div class="less-padding">
+                    <div  *ngIf="signed">
+                        <svg-icon
+                                  [applyClass]="true"
+                                  [src]="'../../../assets/images/checkmark-icon-green.svg'"
+                                  class="policy-check"
+                                ></svg-icon>
+                    </div>
+                </div>
+                <div class="less-padding">
+                    <div  *ngIf="signed">
+                        <svg-icon
+                                  [applyClass]="true"
+                                  [src]="'../../../assets/images/checkmark-icon-green.svg'"
+                                  class="policy-check"
+                                ></svg-icon>
+                    </div>
+                </div>
+                <div class="d-flex align-items-center topic-progress topic-percent">
+                    <div class="progress me-3 rounded-3 bg-200" style="height: 8px;width:100%">
+                      <div class="progress-bar rounded-pill" role="progressbar" 
+                      [ngStyle]="{'width': topics.mastery_percent + '%'}"
+                        aria-valuenow="90" aria-valuemin="0" aria-valuemax="100"></div>
+                        <div _ngcontent-bnc-c61="" class="fw-semi-bold ms-4 percent-count" style="
+                            position: absolute;
+                            top: 26px;
+                        "
+                        [ngStyle]="{'left': getMasteryPercent(topics) + '%'}">&nbsp;{{topics.mastery_percent| number:'1.0-0'}}%</div>
+                    </div>
+                    
+                  </div>
+        </div>
+            <div class="d-flex top" [ngClass]="{'padup':stepname!=0}">
+               
+                    <p class="title">{{topics.topic_courses.topics.topic_name}}<span> &nbsp; Expires 12.08.22</span></p>
+              
+                <div class="text-right" *ngIf="signed" >
+                    <div class="last-completed">
+                        LAST COMPLETED
+                </div>
+                <div  class="charter-signed">{{lastCompletedText}}</div>
+                </div>
+            
+            </div>
+            
+            <div class="d-flex bottom">
+                    <div class="col-md-8 ">
+                       
+                        <p class="heading">NEXT TASK</p>
+                        <p class="subheading" >{{nextTaskText}}</p>
+                    </div>
+                   
+                    <div class="col-md-4 text-right">
+                        
+                        <span class="minutes"><i class="far fa-clock"></i>27mins</span>
+                        <button class="btn-border-dark" [disabled]="nextTaskButton=='Practise Mastery' && mastery_due==1" (click)="takeAction(target)">{{nextTaskButton}}</button>
+                    </div>
+            </div>
+        </div>
+        <!-- main contetnt -->
+        <div class="row mt-4">
+            <!-- main container -->
+            <div class="col-md-8">
+                <!-- brand notification -->
+
+                <!-- video -->
+                <div class="video-container pt-4">
+                    <img src="./assets/images/gdpr.png" class="img-fluid" width="100%" alt="">
+                </div>
+                <div class="heading mt-2">Important! This is a group-wide policy. This means that all staff, workers, employees, contractors, freelancers and directors need to comply. If the provisions of this policy ever conflict with another company’s – this policy should always be complied with.</div>
+               
+                <h3 class="title mb-4 mt-4"  #target>Policy Content</h3>
+                <div >
+                    <div class="content mt-2">Here is your Driving for Work Policy! The Group is committed to ensuring that those who drive while undertaking work for us do so safely. We are determined to prevent accidents and enhance the culture of driver safety across the Group. Driving is an integral part of our business, and driver safety is a key occupational risk for those who drive as they undertake Group business.</div>
+                    <div class="content mt-2">If you would like to refer to this policy again, it can be downloaded here, and is also available in Greenhouse – along with the Group Driver Safety Guidance, Driver Safety for Key Performance Indicators and Driver Awareness Training; which together form our Group Driver Safety Framework. </div>
+                    <div class="mt-2">Click through these headings to read the group’s approach to data protection matters.</div>
+                    <div class="accordian-container mt-4">
+                        <div class="accordion">
+                            <div class="accordion-item" *ngFor="let item of data1;let i = index;">
+                                <button id="accordion-button-1" aria-expanded="false" (click)="toggleAccordian(data1,$event, i)">
+                                    <span class="accordion-title">{{item.parentName}}</span>
+                                    <span [class]="item.isActive?'icon-open':'icon'" aria-hidden="true" ></span>
+                                </button>
+                                <div class="accordion-content" *ngFor="let child of item.childProperties" hide="!item.isActive">
+                                    <p [innerHtml]="getContentText(child.propertyName)" class="content">
+                                    </p>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    
+
+
+                    
+                </div>
+                <div>
+                    <div class="mt-4">The following content is guidance, that supports the main Group policy.</div>
+                    <!-- <h3 class="topic-title">{{topics.topic_courses.topics.topic_name}} Policy Document</h3> -->
+                    <!-- <div class="alert alert-warning alert-dismissible">
+                        <strong><i class="fas fa-exclamation-circle"></i></strong> This policy sets out the group’s
+                        approach to data protection matters. A failure to comply with this policy may result in
+                        disciplinary action.
+                    </div> -->
+                    <div class="accordian-container mt-4">
+                        <!-- <div class="accordion">
+                            <div class="accordion-item" *ngFor="let item of data;let i = index;">
+                                <button id="accordion-button-1" aria-expanded="false" (click)="toggleAccordian($event, i)">
+                                    <span class="accordion-title">{{item.parentName}}</span>
+                                    <span class="icon" aria-hidden="true"></span>
+                                </button>
+                                <div class="accordion-content" *ngFor="let child of item.childProperties" hide="!item.isActive">
+                                    <p>
+                                        {{child.propertyName}}
+                                    </p>
+                                </div>
+                            </div>
+                            
+                            
+
+                        </div> -->
+                        <div class="accordion">
+                            <div class="accordion-item" *ngFor="let item of data;let i = index;">
+                                <button id="accordion-button-1" aria-expanded="false" (click)="toggleAccordian(data,$event, i)">
+                                    <span class="accordion-title">{{item.parentName}}</span>
+                                    <span [class]="item.isActive?'icon-open':'icon'" aria-hidden="true" ></span>
+                                </button>
+                                <div class="accordion-content" *ngFor="let child of item.childProperties" hide="!item.isActive">
+                                    <p [innerHtml]="getContentText(child.propertyName)" class="content">
+                                    </p>
+                                </div>
+                            </div>
+                            
+                            
+                        </div>
+                    </div>
+                </div>
+                <div *ngIf="!signed" class="pt-4">
+                    <!-- <div class="query-text mt-4 mb-4">
+                        <p><svg-icon
+                            [applyClass]="true"
+                            [src]="'../assets/images/message-icon.svg'"
+                            class="msg-icon"
+                            ></svg-icon>
+                            <span>I have a query before I sign the
+                                charter.</span></p>
+                    </div>
+                    <h3 class="heading mb-4 mt-4">Accept and Sign</h3> -->
+                    <div class="toggle-state mt-2">
+                        <p class="mb-0 text-white">Sign Policy Document/Charter</p>
+                    </div>
+                    <div class="sign-charter mb-3">
+                        <input type="checkbox" [(ngModel)]="agree"/><span class="checkbox-text ml-2">I have reviewed and
+                            accept the terms and conditions set out by this policy document.</span>
+                    </div>
+                    <span>
+                    <button class="btn-dark"  [disabled]="!agree" (click)='markComplete()'>Accept</button>
+                    <!-- <span class="brand-notify" style="margin-left: 1em;" *ngIf="!agree">
+                        <i class="fas fa-exclamation-triangle" ></i>Please check that you accept the policy document/charter.
+                    </span> -->
+                    </span>
+                </div>
+                
+            </div>
+            <!-- right sidebar -->
+            <div class="col-md-4 right-sidebar">
+                <h3 class="title">History</h3>
+                <div class="history">
+                    <div class="top d-flex">
+                        <div class="left">Mastery</div>
+                        <div class="right text-right">Started on 15.09.21</div>
+                    </div>
+                    <div class="bottom-content">
+                        <p class="text">{{topics.topic_courses.topics.topic_name}} Mastery practise started.
+                        </p>
+                    </div>
+                </div>
+                <div class="history">
+                    <div class="top d-flex">
+                        <div class="left">LMS Course</div>
+                        <div class="right text-right">Completed on 12.09.21</div>
+                    </div>
+                    <div class="bottom-content">
+                        <p class="text">Opened and completed your Formal Training module.
+                        </p>
+                    </div>
+                </div>
+                <div class="history">
+                    <div class="top d-flex">
+                        <div class="left">Policy Document</div>
+                        <div class="right text-right">Completed on 12.09.21</div>
+                    </div>
+                    <div class="bottom-content">
+                        <p class="text">Reviewed and signed the Policy Document for {{topics.topic_courses.topics.topic_name}}.
+                        </p>
+                    </div>
+                </div>
+
+                <h3 class="title pt-5">Documentation</h3>
+                <div class="">
+                    <div class="d-flex doc-download">
+                        <div class="">
+                            <div class="left">
+                                <svg-icon
+                                [applyClass]="true"
+                                [src]="'../../../assets/images/document-icon.svg'"
+                                class="policy-download-icon"
+                                ></svg-icon>
+                                <span
+                                    class="text-1">{{topics.topic_courses.topics.topic_name}} Policy Document</span> <br> <span
+                                    class="upload-text">Uploaded on 13.09.21</span>
+                            </div>
+                        </div>
+                        <div class="download-bg" 
+                        (click)="downloadPDF()">
+                            <div class="download-icon">
+                                <svg-icon
+                                [applyClass]="true"
+                                [src]="'../../../assets/images/download-icon.svg'"
+                                class="policy-download-icon"
+                                ></svg-icon>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <h3 class="title pt-5">Formal Training</h3>
+                <div class="">
+                    <div class="d-flex doc-download">
+                        <div class="">
+                            <div class="left">
+                                <svg-icon
+                                [applyClass]="true"
+                                [src]="'../../../assets/images/web-icon.svg'"
+                                class="policy-download-icon"
+                                ></svg-icon>
+                                <span
+                                    class="text-1">{{topics.topic_courses.topics.topic_name}} Formal Training</span>
+                            </div>
+                        </div>
+                        <div class="download-bg" (click)="openCourse()">
+                            <div class="download-icon">
+                                <svg-icon
+                                [applyClass]="true"
+                                [src]="'../../../assets/images/external-link-icon.svg'"
+                                class="policy-download-icon"
+                                ></svg-icon>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+            </div>
+            
+        </div>
+    </div>
+
+
+</div>
+
+
+</section>
+
+<div id="gdprmasteryModal" class="modal" *ngIf='stepname==2'>
+    <app-mastery-moment [topic]="topics" (refresh)="refresh($event)"></app-mastery-moment>
+    </div>

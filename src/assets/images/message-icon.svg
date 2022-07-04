@@ -1,0 +1,7 @@
+<svg id="chat" xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 16 16">
+  <g id="chat-2" data-name="chat">
+    <path id="Path-46" d="M3,8V7H9V8Z" fill="#17a68c"/>
+    <path id="Path-46_1_" d="M3,5V4H13V5Z" fill="#17a68c"/>
+    <path id="Path-43" d="M11.7,12,7.8,16l-.7-.7L11.2,11H14a.945.945,0,0,0,1-1V2a.945.945,0,0,0-1-1H2A.945.945,0,0,0,1,2v8a.945.945,0,0,0,1,1H7.5v1H2a2.006,2.006,0,0,1-2-2V2A2.006,2.006,0,0,1,2,0H14a2.006,2.006,0,0,1,2,2v8a2.006,2.006,0,0,1-2,2Z" fill="#17a68c"/>
+  </g>
+</svg>
