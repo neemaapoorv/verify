@@ -1,7 +1,29 @@
 import { Component, OnInit, ViewChild } from '@angular/core';
 import { Router } from '@angular/router';
 import { TopicService } from 'src/app/common/services/topic.service';
-import { Chart } from 'chart.js';
+import {
+  ChartComponent,
+  ApexAxisChartSeries,
+  ApexChart,
+  ApexFill,
+  ApexYAxis,
+  ApexTooltip,
+  ApexTitleSubtitle,
+  ApexXAxis
+} from "ng-apexcharts";
+
+export type ChartOptions = {
+  series: ApexAxisChartSeries;
+  chart: ApexChart;
+  xaxis: ApexXAxis;
+  yaxis: ApexYAxis | ApexYAxis[];
+  title: ApexTitleSubtitle;
+  labels: string[];
+  stroke: any; // ApexStroke;
+  dataLabels: any; // ApexDataLabels;
+  fill: ApexFill;
+  tooltip: ApexTooltip;
+};
 
 @Component({
   selector: 'app-dashboard-topics',
@@ -9,50 +31,83 @@ import { Chart } from 'chart.js';
   styleUrls: ['../../app.component.css']
 })
 export class DashboardTopicsComponent implements OnInit {
+  @ViewChild("chart") chart: ChartComponent;
+  public chartOptions: Partial<ChartOptions>;
   topics=[];
   constructor(
     public topicService:TopicService,
     private router: Router,
-  ) { }
+    
+  ) {
+    this.chartOptions = {
+      series: [
+        {
+          name: "series1",
+          data: [31, 40, 28, 51, 42, 109, 100]
+        },
+        {
+          name: "series2",
+          data: [11, 32, 45, 32, 34, 52, 41]
+        }
+      ],
+      chart: {
+        height: 350,
+        type: "area"
+      },
+      dataLabels: {
+        enabled: false
+      },
+      stroke: {
+        curve: "smooth"
+      },
+      xaxis: {
+        type: "datetime",
+        categories: [
+          "2018-09-19T00:00:00.000Z",
+          "2018-09-19T01:30:00.000Z",
+          "2018-09-19T02:30:00.000Z",
+          "2018-09-19T03:30:00.000Z",
+          "2018-09-19T04:30:00.000Z",
+          "2018-09-19T05:30:00.000Z",
+          "2018-09-19T06:30:00.000Z"
+        ]
+      },
+      tooltip: {
+        x: {
+          format: "dd/MM/yy HH:mm"
+        }
+      }
+    };
+  }
+
+  public generateData(baseval, count, yrange) {
+    var i = 0;
+    var series = [];
+    while (i < count) {
+      var x = Math.floor(Math.random() * (750 - 1 + 1)) + 1;
+      var y =
+        Math.floor(Math.random() * (yrange.max - yrange.min + 1)) + yrange.min;
+      var z = Math.floor(Math.random() * (75 - 15 + 1)) + 15;
+
+      series.push([x, y, z]);
+      baseval += 86400000;
+      i++;
+    }
+    return series;
+  }
 
   ngOnInit(): void {
     this.topicService.getTopics().subscribe(topics => {
       this.topics=topics;
-    });
-   
-  }
-  canvas: any;
-  ctx: any;
-  @ViewChild('mychart') mychart:any;
 
-  ngAfterViewInit() {
-    this.canvas = this.mychart.nativeElement; 
-    this.ctx = this.canvas.getContext('2d');
+      
+    }); 
 
-    new Chart(this.ctx, {
-      type: 'line',
-      data: {
-          datasets: [{
-              label: 'Current Value',
-              data: [0, 20, 40, 50],
-              backgroundColor: "rgb(115 185 243 / 65%)",
-              borderColor: "#007ee7",
-              fill: true,
-          },
-          {
-            label: 'Invested Amount',
-            data: [0, 20, 40, 60, 80],
-            backgroundColor: "#47a0e8",
-            borderColor: "#007ee7",
-            fill: true,
-        }],
-          labels: ['January 2019', 'February 2019', 'March 2019', 'April 2019']
-      },
-  });
+    
   }
 
-  
 
+ 
   goToLink(url: string){
     window.open(url, "_blank");
   }

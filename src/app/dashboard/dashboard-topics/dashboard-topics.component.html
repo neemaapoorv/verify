@@ -1,10 +1,13 @@
+<link
+  rel="stylesheet"
+  href="https://pro.fontawesome.com/releases/v6.0.0-beta3/css/all.css"
+  integrity="sha384-W1gGTCUfKgZViIE0cHC8pK19NpYphTJlBCOnSkljUyUDZbwMp/gkwXwGUQv11Hdc"
+  crossorigin="anonymous"
+/>
+<!-- <link rel="stylesheet" href="../../assets/bootstrap.min.css"> -->
 
-  <link rel="stylesheet" href="https://pro.fontawesome.com/releases/v6.0.0-beta3/css/all.css"
-    integrity="sha384-W1gGTCUfKgZViIE0cHC8pK19NpYphTJlBCOnSkljUyUDZbwMp/gkwXwGUQv11Hdc" crossorigin="anonymous" />
-  <!-- <link rel="stylesheet" href="../../assets/bootstrap.min.css"> -->
-
-  <section class="white-space">
-    <!-- <div class="complance-dashboard">
+<section class="white-space">
+  <!-- <div class="complance-dashboard">
       <div class="">
         <ul class="nav nav-tabs" role="tablist">
           <li class="nav-item">
@@ -18,93 +21,123 @@
           </li>
         </ul> -->
 
-        <!-- Tab panes -->
-        <div class="tab-content">
-          <div id="home" class="container tab-pane active">
-            <div class="row">
-              <div class="col-md-12">
-                <div style="width:600px;height:600px;display: block;">
-                  <canvas id="myChart" width="400" height="400"></canvas>
-                </div>
-                <app-dashboard-messages></app-dashboard-messages>
-                <div class="all-topics">
-                  <div class="title">
-                    <span>All Topics</span>
-                  </div>
-                  <br>
-                  <div class="overflow-hidden">
-                    <div class="">
-                      <div class="table-responsive scrollbar">
-                        <table class="table mb-0 all-topics-tbl">
-                          <thead >
-                            <tr class="text-900">
-                              <th>TOPIC</th>
-                              <th class="text-center">POLICY DOCUMENT</th>
-                              <th class="text-center">LMS COURSE</th>
-                              <th class="text-center">MASTERY</th>
-                              <th class="text-center">TREND</th>
-                              <!-- <th class="pe-card text-end" style="width: 8rem">Revenue (%)</th> -->
-                            </tr>
-                          </thead>
-                          <tbody>
-                            <tr *ngFor="let topic of topics">
-                              <td (click)="openTopics(topic.id)">
-                                <div class="d-flex align-items-center position-relative">
-                                  <div class="flex-1 ms-3">
-                                    <h6 class="mb-1 fw-semi-bold tbl-title">{{topic.topic_courses.topics.topic_name}} 
-                                      <svg-icon
-                                      [applyClass]="true"
-                                      [routerLink]="['/my/topics']"
-                                      [src]="'../assets/images/play-dark.svg'"
-                                      class="topics-icon-mini"
-                                    ></svg-icon>
-                                      
-                                      <!-- <i class="fa fa-play-circle"
+  <!-- Tab panes -->
+  <div class="tab-content">
+    <div id="home" class="container tab-pane active">
+      <div class="row">
+        <div class="col-md-12">
+          >
+          <div id="chart">
+            <apx-chart
+              [series]="chartOptions.series"
+              [chart]="chartOptions.chart"
+              [xaxis]="chartOptions.xaxis"
+              [stroke]="chartOptions.stroke"
+              [tooltip]="chartOptions.tooltip"
+              [dataLabels]="chartOptions.dataLabels"
+            ></apx-chart>
+          </div>
+          <app-dashboard-messages></app-dashboard-messages>
+          <div class="all-topics">
+            <div class="title">
+              <span>All Topics</span>
+            </div>
+            <br />
+            <div class="overflow-hidden">
+              <div class="">
+                <div class="table-responsive scrollbar">
+                  <table class="table mb-0 all-topics-tbl">
+                    <thead>
+                      <tr class="text-900">
+                        <th>TOPIC</th>
+                        <th class="text-center">POLICY DOCUMENT</th>
+                        <th class="text-center">LMS COURSE</th>
+                        <th class="text-center">MASTERY</th>
+                        <th class="text-center">TREND</th>
+                        <!-- <th class="pe-card text-end" style="width: 8rem">Revenue (%)</th> -->
+                      </tr>
+                    </thead>
+                    <tbody>
+                      <tr *ngFor="let topic of topics">
+                        <td (click)="openTopics(topic.id)">
+                          <div
+                            class="d-flex align-items-center position-relative"
+                          >
+                            <div class="flex-1 ms-3">
+                              <h6 class="mb-1 fw-semi-bold tbl-title">
+                                {{ topic.topic_courses.topics.topic_name }}
+                                <svg-icon
+                                  [applyClass]="true"
+                                  [routerLink]="['/my/topics']"
+                                  [src]="'../assets/images/play-dark.svg'"
+                                  class="topics-icon-mini"
+                                ></svg-icon>
+
+                                <!-- <i class="fa fa-play-circle"
                                         aria-hidden="true" [routerLink]="['/my/topics']"></i> -->
-                                      </h6>
-                                  </div>
-                                </div>
-                              </td>
-                              <td class="align-middle text-end fw-semi-bold text-center">
-                                <svg-icon
-                                      [applyClass]="true"
-                                      [src]="getPolicyIcon(topic)"
-                                      class="topics-list-icon"
-                                    ></svg-icon>
-                                
-                                <!-- <i
+                              </h6>
+                            </div>
+                          </div>
+                        </td>
+                        <td
+                          class="align-middle text-end fw-semi-bold text-center"
+                        >
+                          <svg-icon
+                            [applyClass]="true"
+                            [src]="getPolicyIcon(topic)"
+                            class="topics-list-icon"
+                          ></svg-icon>
+
+                          <!-- <i
                                   class="fas" [ngClass]="{'fa-pen-circle':topic.policy_doc_complete=='Not Started'||topic.policy_doc_complete=='In Progress' , 'fa-check-circle':topic.policy_doc_complete=='Complete','fa-minus-circle':topic.policy_doc_complete=='Not Required'}"></i> -->
-                                </td>
-                              <td class="align-middle text-end fw-semi-bold text-center">
-                                <svg-icon
-                                      [applyClass]="true"
-                                      [src]="getFormalIcon(topic)"
-                                      class="topics-list-icon"
-                                    ></svg-icon>
-                                
-                                
-                                
-                                <!-- <i 
+                        </td>
+                        <td
+                          class="align-middle text-end fw-semi-bold text-center"
+                        >
+                          <svg-icon
+                            [applyClass]="true"
+                            [src]="getFormalIcon(topic)"
+                            class="topics-list-icon"
+                          ></svg-icon>
+
+                          <!-- <i 
                                   class="fas" [ngClass]=""></i> -->
-                                </td>
-                              <td class="align-middle pe-card" >
-                                <div class="d-flex align-items-center topic-progress">
-                                  <div class="progress me-3 rounded-3 bg-200" style="height: 8px;width:120px">
-                                    <div class="progress-bar rounded-pill" role="progressbar" [ngStyle]="{'width': topic.mastery_percent + '%'}"
-                                      aria-valuenow="{topic.mastery_percent}" aria-valuemin="0" aria-valuemax="100"></div>
-                                  </div>
-                                  <div class="fw-semi-bold ms-4 percent-count">&nbsp;{{topic.mastery_percent| number:'1.0-0'}}%</div>
-                                </div>
-                              </td>
-                              <td class="align-middle text-end fw-semi-bold text-center"> 
-                                <svg-icon
-                                [applyClass]="true"
-                                [src]="getTrend(topic)"
-                                class="topics-icon-mini"
-                              ></svg-icon>
-                              </td>
-                            </tr>
-                            <!-- <tr>
+                        </td>
+                        <td class="align-middle pe-card">
+                          <div class="d-flex align-items-center topic-progress">
+                            <div
+                              class="progress me-3 rounded-3 bg-200"
+                              style="height: 8px; width: 120px"
+                            >
+                              <div
+                                class="progress-bar rounded-pill"
+                                role="progressbar"
+                                [ngStyle]="{
+                                  width: topic.mastery_percent + '%'
+                                }"
+                                aria-valuenow="{topic.mastery_percent}"
+                                aria-valuemin="0"
+                                aria-valuemax="100"
+                              ></div>
+                            </div>
+                            <div class="fw-semi-bold ms-4 percent-count">
+                              &nbsp;{{
+                                topic.mastery_percent | number: "1.0-0"
+                              }}%
+                            </div>
+                          </div>
+                        </td>
+                        <td
+                          class="align-middle text-end fw-semi-bold text-center"
+                        >
+                          <svg-icon
+                            [applyClass]="true"
+                            [src]="getTrend(topic)"
+                            class="topics-icon-mini"
+                          ></svg-icon>
+                        </td>
+                      </tr>
+                      <!-- <tr>
                               <td>
                                 <div class="d-flex align-items-center position-relative">
                                   <div class="flex-1 ms-3">
@@ -260,32 +293,30 @@
                                   class="fas fa-arrow-up"></i>
                               </td>
                             </tr> -->
-
-
-                          </tbody>
-                        </table>
-                      </div>
-                    </div>
-                  </div>
+                    </tbody>
+                  </table>
                 </div>
               </div>
-              
             </div>
           </div>
-          <!-- <div id="menu1" class="container tab-pane fade" ><br>
+        </div>
+      </div>
+    </div>
+    <!-- <div id="menu1" class="container tab-pane fade" ><br>
             <h3>Menu 1</h3>
             <p>Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo
               consequat.
             </p>
           </div> -->
-          <div id="menu2" class="container tab-pane fade"><br>
-            <h3>Menu 2</h3>
-            <p>Sed ut perspiciatis unde omnis iste natus error sit voluptatem accusantium doloremque laudantium, totam
-              rem
-              aperiam.</p>
-          </div>
-        </div>
-      <!-- </div> -->
-    <!-- </div> -->
-  </section>
-
+    <div id="menu2" class="container tab-pane fade">
+      <br />
+      <h3>Menu 2</h3>
+      <p>
+        Sed ut perspiciatis unde omnis iste natus error sit voluptatem
+        accusantium doloremque laudantium, totam rem aperiam.
+      </p>
+    </div>
+  </div>
+  <!-- </div> -->
+  <!-- </div> -->
+</section>
