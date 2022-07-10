@@ -25,6 +25,8 @@ import { AccordionModule } from '@syncfusion/ej2-angular-navigations';
 import { AngularSvgIconModule } from "angular-svg-icon";
 import { TaskService } from './common/services/task.service';
 import { MyTeamComponent } from './my-team/my-team.component';
+import { NgApexchartsModule } from "ng-apexcharts";
+
 @NgModule({
   declarations: [
     AppComponent,
@@ -50,6 +52,7 @@ import { MyTeamComponent } from './my-team/my-team.component';
     AppmainRoutingModule,
     FormsModule,
     AccordionModule,
+    NgApexchartsModule,
     AngularSvgIconModule.forRoot(),
   ],
   providers: [
